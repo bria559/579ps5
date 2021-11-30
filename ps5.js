@@ -121,11 +121,20 @@ getSimilarButton.addEventListener('click', () =>{
             wordOutput.innerHTML = 'No results'
         }
 
-        for (const data in result){
-         similar_word =  result[data];
+        for (const data in result){ 
+         const similar_word =  result[data];
+         let savebtn = document.createElement("button");
+         savebtn.innerHTML = '(save)';
          let node  = document.createElement('LI');
          let textnode = document.createTextNode(similar_word['word']);
          node.appendChild(textnode);
+         node.append(savebtn);
+         savebtn.addEventListener('click', ()=>{
+             saved_array.push(similar_word['word']);
+             console.log(similar_word['word'])
+
+             savedOutput.innerHTML = saved_array.join(' , ');
+         });
          wordOutput.append(node);
      }
     });
